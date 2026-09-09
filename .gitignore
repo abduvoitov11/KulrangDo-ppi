@@ -1,7 +1,45 @@
-# Maxfiy konfiguratsiya fayli (Bot token va shaxsiy sozlamalar)
+# ============================================
+# Git Ignore for Kulrang Doppi Chrome/Edge Extension
+# ============================================
 
-# Vaqtinchalik fayllar va loglar
-*.log
+# Operating System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
+
+# Editor & IDE Directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+*.bak
+
+# Environment & Local Secrets
+.env
+.env.local
+.env.*.local
+
+# Logs and Debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency Directories
 node_modules/
+package-lock.json
+
+# Temporary Files & Archives
+*.tmp
+*.temp
+.cache/
+*.crx
+*.pem
