@@ -1,0 +1,7 @@
+# Maxfiy konfiguratsiya fayli (Bot token va shaxsiy sozlamalar)
+
+# Vaqtinchalik fayllar va loglar
+*.log
+.DS_Store
+Thumbs.db
+node_modules/

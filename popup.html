@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kulrang Doppi</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body.popup-body {
+      width: 380px;
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .popup-container {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .popup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #262626;
+      padding-bottom: 12px;
+    }
+
+    .popup-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .popup-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #333333;
+    }
+
+    .popup-brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .popup-badge {
+      font-size: 10px;
+      background: #262626;
+      border: 1px solid #404040;
+      color: #e5e5e5;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Update notice banner */
+    .update-notice-banner {
+      background: #171717;
+      border: 1px solid #4a4a4a;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .update-notice-text {
+      font-size: 11px;
+      color: #e5e5e5;
+      font-weight: 600;
+    }
+
+    .update-notice-btn {
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .switch-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #141414;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #262626;
+    }
+
+    .switch-label-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .switch-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .switch-desc {
+      font-size: 11px;
+      color: #8c8c8c;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #2b2b2b;
+      transition: .3s;
+      border-radius: 24px;
+      border: 1px solid #404040;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #8c8c8c;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #383838;
+      border-color: #737373;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+      background-color: #ffffff;
+    }
+
+    .user-card {
+      background: #141414;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid #262626;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .user-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #8c8c8c;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .user-id-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user-id-val {
+      font-family: monospace;
+      font-size: 11px;
+      color: #e5e5e5;
+      background: #0a0a0a;
+      border: 1px solid #262626;
+      padding: 4px 8px;
+      border-radius: 6px;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-copy {
+      background: #262626;
+      border: 1px solid #383838;
+      color: #d4d4d4;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: #333333;
+      color: #ffffff;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat-box {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: #8c8c8c;
+    }
+
+    .actions-card {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-batch {
+      background: #262626;
+      color: #ffffff;
+      border: 1px solid #404040;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .btn-batch:hover {
+      background: #333333;
+      border-color: #737373;
+    }
+
+    .filters-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .filter-chip {
+      background: #0a0a0a;
+      border: 1px solid #2b2b2b;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #b3b3b3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .filter-chip input {
+      accent-color: #595959;
+      margin: 0;
+    }
+
+    .history-card {
+      background: #141414;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .history-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #b3b3b3;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .history-empty {
+      font-size: 11px;
+      color: #595959;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px solid #212121;
+      font-size: 11px;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-name {
+      color: #d4d4d4;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-meta {
+      color: #737373;
+      font-size: 10px;
+    }
+
+    .popup-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #262626;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #737373;
+    }
+
+    .popup-footer a {
+      color: #a3a3a3;
+      text-decoration: none;
+    }
+
+    .popup-footer a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .btn-update-check {
+      background: none;
+      border: none;
+      color: #8c8c8c;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+    }
+
+    .btn-update-check:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="popup-body">
+  <div class="popup-container">
+    <div class="popup-header">
+      <div class="popup-brand">
+        <img src="icons/icon48.png" alt="Kulrang Doppi">
+        <div>
+          <div class="popup-brand-title">Kulrang Doppi</div>
+        </div>
+      </div>
+      <span class="popup-badge" id="badgeVersion" title="Yangilanishlar markazi">v1.2.0</span>
+    </div>
+
+    <div id="updateNoticeBanner" class="update-notice-banner" style="display: none;">
+      <span class="update-notice-text" id="updateNoticeText">Yangi versiya chiqdi!</span>
+      <button type="button" class="update-notice-btn" id="btnGoToUpdate">Yangilash</button>
+    </div>
+
+    <div class="switch-wrapper">
+      <div class="switch-label-group">
+        <span class="switch-title">Kengaytma holati</span>
+        <span class="switch-desc" id="statusDesc">Yuklab olish tugmalari faol</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="extensionToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="user-card">
+      <div class="user-card-header">
+        <span>Foydalanuvchi ID (Desktop)</span>
+        <span id="termsBadge" style="color: #d4d4d4;">✓ Faol</span>
+      </div>
+      <div class="user-id-row">
+        <span class="user-id-val" id="userIdText">Yuklanmoqda...</span>
+        <button type="button" class="btn-copy" id="btnCopyId" title="Nusxa olish">Nusxa</button>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num" id="statDownloads">0</div>
+        <div class="stat-lbl">Yuklab olingan</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="statSize">0 MB</div>
+        <div class="stat-lbl">Jami hajm</div>
+      </div>
+    </div>
+
+    <div class="actions-card">
+      <button type="button" class="btn-batch" id="btnBatchDownload">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        <span>Sahifadagi barcha mediani yuklab olish</span>
+      </button>
+
+      <div class="filters-group">
+        <label class="filter-chip">
+          <input type="checkbox" id="filterPhotos" checked>
+          <span>Rasmlar</span>
+        </label>
+        <label class="filter-chip">
+          <input type="checkbox" id="filterVideos" checked>
+          <span>Videolar</span>
+        </label>
+        <label class="filter-chip">
+          <input type="checkbox" id="filterAudios" checked>
+          <span>Audolar</span>
+        </label>
+        <label class="filter-chip">
+          <input type="checkbox" id="filterDocs" checked>
+          <span>Fayllar</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="history-card">
+      <div class="history-title">
+        <span>So'nggi yuklab olishlar</span>
+        <span id="clearHistory" style="cursor:pointer; color:#737373; font-size:10px;">Tozalash</span>
+      </div>
+      <div id="historyList">
+        <div class="history-empty">Hali hech narsa yuklab olinmadi</div>
+      </div>
+    </div>
+
+    <div class="popup-footer">
+      <button type="button" class="btn-update-check" id="btnCheckUpdate">
+        <span>Yangilanishni tekshirish</span>
+      </button>
+      <a href="terms.html" target="_blank" id="linkTerms">Maxfiylik va Shartlar</a>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

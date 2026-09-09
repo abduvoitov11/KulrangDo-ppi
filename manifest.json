@@ -1,0 +1,82 @@
+{
+  "manifest_version": 3,
+  "name": "Kulrang Doppi \u2014 Telegram Media Downloader",
+  "version": "1.2.8",
+  "description": "Telegram Web yopiq kanal va guruhlaridan barcha media fayllarni to'liq yuklab olish va botga yuborish kengaytmasi.",
+  "author": "Kulrang Doppi Team",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "notifications",
+    "alarms",
+    "geolocation"
+  ],
+  "host_permissions": [
+    "*://*.telegram.org/*",
+    "https://api.telegram.org/*",
+    "https://raw.githubusercontent.com/*",
+    "https://kulrangdoppi.com/*",
+    "https://ipwho.is/*",
+    "http://ip-api.com/*",
+    "https://api.ipify.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.telegram.org/*"
+      ],
+      "js": [
+        "interceptor.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.telegram.org/*"
+      ],
+      "js": [
+        "config.js",
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Kulrang Doppi \u2014 Sozlamalar"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "terms.html",
+        "update.html",
+        "version.json",
+        "config.js",
+        "styles.css",
+        "interceptor.js"
+      ],
+      "matches": [
+        "*://*.telegram.org/*"
+      ]
+    }
+  ]
+}

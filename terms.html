@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kulrang Doppi — Maxfiylik va Foydalanish Shartlari</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body.terms-page {
+      background: radial-gradient(circle at 50% 10%, #171717 0%, #0a0a0a 100%);
+      color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .terms-wrapper {
+      max-width: 800px;
+      width: 100%;
+      background: #141414;
+      border: 1px solid #2e2e2e;
+      border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .terms-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #262626;
+      padding-bottom: 16px;
+    }
+
+    .terms-logo-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #383838;
+    }
+
+    .terms-header h1 {
+      font-size: 22px;
+      margin: 0;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .terms-header p {
+      margin: 4px 0 0 0;
+      font-size: 13px;
+      color: #8c8c8c;
+    }
+
+    .terms-scrollbox {
+      background: #0d0d0d;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 24px;
+      height: 380px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #c4c4c4;
+      scrollbar-width: thin;
+      scrollbar-color: #383838 #0d0d0d;
+    }
+
+    .terms-scrollbox::-webkit-scrollbar {
+      width: 6px;
+    }
+    .terms-scrollbox::-webkit-scrollbar-track {
+      background: #0d0d0d;
+    }
+    .terms-scrollbox::-webkit-scrollbar-thumb {
+      background-color: #383838;
+      border-radius: 3px;
+    }
+
+    .terms-section-title {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      border-left: 3px solid #737373;
+      padding-left: 10px;
+    }
+
+    .terms-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .terms-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1px solid #262626;
+      padding-top: 20px;
+    }
+
+    .terms-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #d4d4d4;
+      user-select: none;
+    }
+
+    .terms-checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #404040;
+    }
+
+    .terms-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .btn-submit {
+      background: #ffffff;
+      color: #0a0a0a;
+      border: 1px solid #e5e5e5;
+      padding: 12px 26px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: #e5e5e5;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-submit:disabled {
+      background: #262626;
+      color: #595959;
+      border-color: #333333;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .terms-success-msg {
+      display: none;
+      background: #171717;
+      border: 1px solid #4a4a4a;
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="terms-page">
+  <div class="terms-wrapper">
+    <div class="terms-header">
+      <div class="terms-logo-badge">
+        <img src="icons/icon48.png" alt="Kulrang Doppi" width="40" height="40">
+      </div>
+      <div>
+        <h1>Kulrang Doppi</h1>
+        <p>Telegram Media Downloader — Maxfiylik va Foydalanish Shartlari (v1.0.0)</p>
+      </div>
+    </div>
+
+    <div class="terms-scrollbox" id="termsBox">
+      <div class="terms-section-title">1. Umumiy qoidalar va Maqsad</div>
+      <p>
+        "Kulrang Doppi" brauzer kengaytmasiga xush kelibsiz! Ushbu kengaytma Telegram Web 
+        (web.telegram.org) orqali media fayllarni qulay va tezkor yuklab olish maqsadida ishlab chiqilgan.
+      </p>
+
+      <div class="terms-section-title">2. Maxfiylik siyosati</div>
+      <p>
+        Biz foydalanuvchilarimizning shaxsiy daxlsizligi va axborot xavfsizligini ta'minlaymiz.
+      </p>
+      <ul>
+        <li><b>Shaxsiy xabarlar o'qilmaydi:</b> Kengaytma sizning yozishmalaringiz, telefon raqamingiz yoki parollaringizni HECH QACHON to'plamaydi va uchinchi shaxslarga uzatmaydi.</li>
+        <li><b>Noyob foydalanuvchi ID (UUID):</b> Sizning brauzeringizda xizmat sifatini tahlil qilish uchun tasodifiy yaratilgan anonim identifikator saqlanadi.</li>
+        <li><b>Hisobot tizimi:</b> Har bir yuklab olish amalga oshirilganda, tizim auditi uchun fayl nomi, hajmi, vaqti va manba sarlavhasi shifrlangan Telegram Bot API orqali qayd etiladi.</li>
+        <li><b>Qurilma turi:</b> Kengaytma faqat Desktop (kompyuter va noutbuklar) uchun mo'ljallangan.</li>
+      </ul>
+
+      <div class="terms-section-title">3. Foydalanish shartlari va Mas'uliyat</div>
+      <p>
+        Kengaytmadan foydalanayotganda quyidagi qoidalarga qat'iy rioya qilishingiz shart:
+      </p>
+      <ul>
+        <li>Yuklab olingan media fayllardan faqat shaxsiy, qonuniy va ta'lim maqsadlarida foydalaning.</li>
+        <li>Mualliflik huquqi bilan himoyalangan kontentni muallif roziligisiz noqonuniy tarqatish taqiqlanadi.</li>
+        <li>Foydalanuvchi yuklab olingan materiallardan qanday foydalanishi bo'yicha shaxsiy javobgarlikni o'z zimmasiga oladi.</li>
+      </ul>
+    </div>
+
+    <div class="terms-footer">
+      <div id="termsSuccess" class="terms-success-msg">
+        ✓ Shartlar muvaffaqiyatli qabul qilindi. Endi Telegram Web sahifasida mediani erkin yuklab olishingiz mumkin.
+      </div>
+
+      <label class="terms-checkbox-label">
+        <input type="checkbox" id="termsCheckbox">
+        <span>Men Maxfiylik siyosati va Foydalanish shartlari bilan to'liq tanishdim va roziman.</span>
+      </label>
+
+      <div class="terms-actions">
+        <button type="button" class="btn-submit" id="btnAccept" disabled>
+          <span>Davom etish</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="terms.js"></script>
+</body>
+</html>

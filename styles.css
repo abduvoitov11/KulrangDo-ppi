@@ -1,0 +1,411 @@
+/**
+ * Kulrang Doppi — Telegram Media Downloader
+ * Premium Monoxrom Uslublar (Qora va Kulrang Gamut)
+ *
+ * Qoidalar:
+ * - Faqat qora (#0a0a0a, #121212, #1a1a1a), grafit va kulrang (#262626, #404040, #737373, #a3a3a3)
+ * - Matnlar: sof oq (#ffffff) va och kulrang (#d4d4d4)
+ * - Hech qanday ortiqcha matnli tugmalar yo'q, faqat ixcham va nafis emoji/ikonka tugmalari
+ * - Minimalist, jiddiy va professional estetika
+ */
+
+/* ============================================================
+   1. TELEGRAM HIMOYA VA CHEKLOVLARINI YECHISH
+   ============================================================ */
+.no-forwards,
+[class*="no-forwards"],
+.bubble,
+.message,
+.media-container,
+.album-item,
+.media-viewer {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.bubble.is-protected .media-container,
+.bubble .media-photo,
+.bubble .media-video,
+.bubble video,
+.bubble img {
+  pointer-events: auto !important;
+}
+
+/* Telegram Web K va A da yashirilgan download va forward tugmalarini ko'rsatish */
+.media-viewer-topbar .media-viewer-buttons button.btn-icon.hide,
+.media-viewer-buttons button.hide,
+button.tgico-download.hide {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* ============================================================
+   2. TO'LIQ EKRAN MODAL OYNA (MAXFIYLIK VA SHARTLAR)
+   ============================================================ */
+.kd-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(10, 10, 10, 0.92) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  z-index: 999999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  animation: kdFadeIn 0.25s ease !important;
+}
+
+.kd-modal-card {
+  width: 100% !important;
+  max-width: 740px !important;
+  max-height: 90vh !important;
+  background: #141414 !important;
+  border: 1px solid #2e2e2e !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.kd-modal-header {
+  padding: 22px 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  background: #0d0d0d !important;
+  border-bottom: 1px solid #262626 !important;
+}
+
+.kd-modal-header img {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 10px !important;
+  border: 1px solid #383838 !important;
+  background: #171717 !important;
+}
+
+.kd-modal-title {
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.5px !important;
+}
+
+.kd-modal-subtitle {
+  margin: 4px 0 0 0 !important;
+  font-size: 13px !important;
+  color: #8c8c8c !important;
+}
+
+.kd-modal-body {
+  padding: 26px 28px !important;
+  overflow-y: auto !important;
+  color: #c4c4c4 !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  max-height: 400px !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #383838 #0d0d0d !important;
+}
+
+.kd-modal-body::-webkit-scrollbar {
+  width: 6px !important;
+}
+.kd-modal-body::-webkit-scrollbar-track {
+  background: #0d0d0d !important;
+}
+.kd-modal-body::-webkit-scrollbar-thumb {
+  background: #383838 !important;
+  border-radius: 3px !important;
+}
+
+.kd-section-head {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-top: 18px !important;
+  margin-bottom: 8px !important;
+  border-left: 3px solid #737373 !important;
+  padding-left: 10px !important;
+}
+.kd-section-head:first-child {
+  margin-top: 0 !important;
+}
+
+.kd-modal-body ul {
+  margin: 8px 0 16px 20px !important;
+  padding: 0 !important;
+}
+
+.kd-modal-body li {
+  margin-bottom: 6px !important;
+  color: #a3a3a3 !important;
+}
+
+.kd-modal-body b {
+  color: #ffffff !important;
+}
+
+.kd-modal-footer {
+  padding: 20px 28px !important;
+  background: #0d0d0d !important;
+  border-top: 1px solid #262626 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.kd-checkbox-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  color: #d4d4d4 !important;
+  font-size: 13px !important;
+  user-select: none !important;
+}
+
+.kd-checkbox-container input {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: #404040 !important;
+  cursor: pointer !important;
+}
+
+.kd-footer-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+}
+
+.kd-btn-accept {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 8px !important;
+  padding: 12px 28px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.kd-btn-accept:hover:not(:disabled) {
+  background: #e5e5e5 !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
+}
+
+.kd-btn-accept:disabled {
+  background: #262626 !important;
+  color: #595959 !important;
+  border-color: #333333 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+/* ============================================================
+   3. NAFIS VA IXCHAM EMOJI/IKONKA TUGMASI (HECH QANDAY MATNSIZ)
+   ============================================================ */
+.kd-media-wrapper {
+  position: relative !important;
+}
+
+.kd-download-btn {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  z-index: 9999 !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  background: rgba(14, 14, 14, 0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid #383838 !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+  user-select: none !important;
+  overflow: hidden !important;
+}
+
+.kd-download-btn:hover {
+  background: #242424 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.85) !important;
+}
+
+.kd-download-btn.downloading {
+  background: #141414 !important;
+  border-color: #737373 !important;
+  color: #ffffff !important;
+  cursor: wait !important;
+  transform: scale(1) !important;
+}
+
+.kd-download-btn.downloaded {
+  background: #1f1f1f !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  animation: kdBounce 0.3s ease !important;
+}
+
+/* Audio va Hujjatlar uchun ixcham tugma */
+.kd-inline-btn {
+  position: static !important;
+  margin-left: 8px !important;
+  margin-top: 0 !important;
+  display: inline-flex !important;
+  vertical-align: middle !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+}
+
+/* Media Viewer yuqori tugmasi */
+.kd-viewer-top-btn {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(26, 26, 26, 0.9) !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  margin-right: 8px !important;
+  z-index: 99999 !important;
+}
+
+.kd-viewer-top-btn:hover {
+  background: #333333 !important;
+  border-color: #ffffff !important;
+  transform: scale(1.08) !important;
+}
+
+/* ============================================================
+   4. TOAST BILDIRISHNOMALARI (MONOXROM)
+   ============================================================ */
+.kd-toast-container {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 99999999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  pointer-events: none !important;
+}
+
+.kd-toast {
+  pointer-events: auto !important;
+  min-width: 280px !important;
+  max-width: 380px !important;
+  background: #141414 !important;
+  border: 1px solid #333333 !important;
+  border-left: 4px solid #ffffff !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  color: #f5f5f5 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  animation: kdSlideIn 0.25s ease-out !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.kd-toast.success {
+  border-left-color: #d4d4d4 !important;
+}
+
+.kd-toast-icon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.kd-toast-content {
+  flex: 1 !important;
+  overflow: hidden !important;
+}
+
+.kd-toast-title {
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin-bottom: 2px !important;
+}
+
+.kd-toast-desc {
+  font-size: 11px !important;
+  color: #8c8c8c !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* ============================================================
+   5. ANIMATSIYALAR
+   ============================================================ */
+@keyframes kdFadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes kdSlideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes kdSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes kdBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.kd-spinner {
+  animation: kdSpin 0.9s linear infinite !important;
+}
